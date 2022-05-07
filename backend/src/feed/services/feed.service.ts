@@ -1,4 +1,26 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { FeedPostEntity } from '../models/post.entity';
+import { FeedPost } from '../models/post.interface';
+import { Observable, from } from 'rxjs'
 
+// Injecting repository from entity 
 @Injectable()
-export class FeedService {}
+export class FeedService {
+
+    constructor(@InjectRepository(FeedPostEntity)
+    private readonly feedPostRepository: Repository<FeedPostEntity>) 
+    {}
+
+    // // As a promise
+    // createPost(feedPost: FeedPost) {
+    //     return this.feedPostRepository.save(feedPost);
+    // }
+
+    // As observable; the from() method takes in a promise and changes to Observable)
+    createPost(feedPost: FeedPost): Observable<FeedPost> {
+        return from(this.feedPostRepository.save(feedPost));
+    }
+
+}

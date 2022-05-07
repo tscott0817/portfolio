@@ -5,7 +5,7 @@ export class FeedPostEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({default: ' '})
+    @Column({default: 'Default Test String'})
     body: string;
 
     @Column({type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})

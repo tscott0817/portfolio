@@ -24,8 +24,7 @@ import { FeedModule } from './feed/feed.module';
       synchronize: true, // TODO: Don't use in production
 
     }),
-    
-    FeedModule
+     FeedModule,
   ],
   controllers: [AppController],
   providers: [AppService],
